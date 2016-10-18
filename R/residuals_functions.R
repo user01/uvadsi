@@ -16,6 +16,6 @@ residuals_PRESS <- function(fit) {
   hat <- lm.influence(fit)$hat
   fit %>%
     residuals() %>%
-    `/`(1-hat) %>%
+    `/`(1 - hat) %>%
     unname
 }

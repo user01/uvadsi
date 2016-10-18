@@ -31,3 +31,7 @@ Simply reinstall `uvadsi` again.
 ```R
 devtools::install_github('user01/uvadsi')
 ```
+
+### Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.

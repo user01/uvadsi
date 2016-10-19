@@ -90,3 +90,42 @@ test_that("Get two row names", {
         dimnames = list(c("a", "c"), c("x", "y")))
       )
 })
+
+# #############################################################################
+# Set Column Names
+# #############################################################################
+test_that("Set Column Names 2", {
+  matrix(1:6, nrow = 3) %>%
+    set_colnames(c("a", "b")) %>%
+    expect_equal(
+      matrix(1:6,
+        nrow = 3,
+        dimnames = list(NULL, c("a", "b")))
+      )
+})
+
+test_that("Set Column Names 3", {
+  matrix(1:6, nrow = 2) %>%
+    set_colnames(c("a", "b", "c")) %>%
+    expect_equal(
+      matrix(1:6,
+        nrow = 2,
+        dimnames = list(NULL, c("a", "b", "c")))
+      )
+})
+
+test_that("Set Column Names Clear", {
+  matrix(1:6,
+    nrow = 2,
+    dimnames = list(NULL, c("a", "b", "c"))) %>%
+    set_colnames(NULL) %>%
+    expect_equal(matrix(1:6, nrow = 2, dimnames = list(NULL, NULL)))
+})
+
+test_that("Set Column Names Clear Empty", {
+  matrix(1:6,
+    nrow = 2,
+    dimnames = list(NULL, c("a", "b", "c"))) %>%
+    set_colnames() %>%
+    expect_equal(matrix(1:6, nrow = 2, dimnames = list(NULL, NULL)))
+})

@@ -1,8 +1,12 @@
-# UVA DSI '17 Library
+UVA DSI '17 Library : Useful tools for Data Science
+---------------
+
+**License:** [MIT](https://opensource.org/licenses/MIT)
 
 [![Travis-CI Build Status](https://travis-ci.org/user01/uvadsi.svg?branch=master)](https://travis-ci.org/user01/uvadsi)
+[![Coverage Status](https://coveralls.io/repos/github/user01/uvadsi/badge.svg?branch=master)](https://coveralls.io/github/user01/uvadsi?branch=master)
 
-A collection of useful functions made publicly available by the University of Virginia Data Science Institute class of 2017.
+Made publicly available by the University of Virginia Data Science Institute class of 2017.
 
 ### Installing
 

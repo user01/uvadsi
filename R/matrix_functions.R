@@ -40,7 +40,7 @@ get_row <- function(.m, rows) {
 #' set_colnames(matrix(1:6, nrow = 2), c("a", "b", "c"))
 #' set_colnames(matrix(1:6, nrow = 3, byrow = TRUE, dimnames = list(c("a", "b", "c"), c("x", "y"))), NULL)
 #' @export
-set_colnames <- function(.m, column_names) {
+set_colnames <- function(.m, column_names = NULL) {
   colnames(.m) <- column_names
   .m
 }
@@ -56,7 +56,7 @@ set_colnames <- function(.m, column_names) {
 #' set_rownames(matrix(1:6, nrow = 3), c("a", "b", "c"))
 #' set_rownames(matrix(1:6, nrow = 3, byrow = TRUE, dimnames = list(c("a", "b", "c"))), NULL)
 #' @export
-set_rownames <- function(.m, row_names) {
+set_rownames <- function(.m, row_names = NULL) {
   rownames(.m) <- row_names
   .m
 }

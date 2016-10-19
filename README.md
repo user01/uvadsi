@@ -1,6 +1,6 @@
 # UVA DSI '17 Library
 
-![Travis-CI Build Status](https://travis-ci.org/user01/uvadsi.svg?branch=master)](https://travis-ci.org/user01/uvadsi)
+[![Travis-CI Build Status](https://travis-ci.org/user01/uvadsi.svg?branch=master)](https://travis-ci.org/user01/uvadsi)
 
 A collection of useful functions made publicly available by the University of Virginia Data Science Institute class of 2017.
 

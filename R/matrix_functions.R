@@ -18,7 +18,7 @@ get_col <- function(.m, cols) {
 #' Select rows by indices
 #'
 #' @param .m A 2d matrix
-#' @param cols Numeric or character vector or empty (missing)
+#' @param rows Numeric or character vector or empty (missing)
 #' @return Subset of rows of matrix.
 #' @examples
 #' get_row(matrix(1:6, nrow = 3), 2)
@@ -38,7 +38,8 @@ get_row <- function(.m, rows) {
 #' @examples
 #' set_colnames(matrix(1:6, nrow = 3), c("a", "b"))
 #' set_colnames(matrix(1:6, nrow = 2), c("a", "b", "c"))
-#' set_colnames(matrix(1:6, nrow = 3, byrow = TRUE, dimnames = list(c("a", "b", "c"), c("x", "y"))), NULL)
+#' set_colnames(matrix(1:6, nrow = 3, byrow = TRUE,
+#'              dimnames = list(c("a", "b", "c"), c("x", "y"))), NULL)
 #' @export
 set_colnames <- function(.m, column_names = NULL) {
   colnames(.m) <- column_names

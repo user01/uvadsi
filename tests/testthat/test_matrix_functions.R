@@ -4,7 +4,7 @@ suppressPackageStartupMessages(library(purrr))
 suppressPackageStartupMessages(library(dplyr))
 
 # #############################################################################
-# Column selection
+# Column Selection
 # #############################################################################
 test_that("Get empty column", {
   matrix(1:6, nrow = 2) %>%
@@ -44,5 +44,49 @@ test_that("Get two column name", {
              nrow = 2,
              byrow = TRUE,
              dimnames = list(c("a", "b"), c("x", "z")))
+      )
+})
+
+# #############################################################################
+# Row Selection
+# #############################################################################
+test_that("Get empty row", {
+  matrix(1:6, nrow = 3) %>%
+    get_row() %>%
+    expect_equal(matrix(1:6, nrow = 3))
+})
+
+test_that("Get one row index", {
+  matrix(1:6, nrow = 3) %>%
+    get_row(2) %>%
+    expect_equal(c(2, 5))
+})
+
+test_that("Get two row indices", {
+  matrix(1:6, nrow = 3) %>%
+    get_row(c(2,3)) %>%
+    expect_equal(matrix(c(2,3,5,6), nrow = 2))
+})
+
+test_that("Get one row name", {
+  matrix(1:6,
+    nrow = 3,
+    byrow = TRUE,
+    dimnames = list(c("a", "b", "c"), c("x", "y"))) %>%
+    get_row("b") %>%
+    expect_equal(c(x=3,y=4))
+})
+
+test_that("Get two row names", {
+  matrix(1:6,
+    nrow = 3,
+    byrow = TRUE,
+    dimnames = list(c("a", "b", "c"), c("x", "y"))) %>%
+    get_row(c("a","c")) %>%
+    expect_equal(
+      matrix(c(1,2,5,6),
+        nrow = 2,
+        byrow = TRUE,
+        dimnames = list(c("a", "c"), c("x", "y")))
       )
 })

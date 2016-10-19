@@ -28,3 +28,35 @@ get_col <- function(.m, cols) {
 get_row <- function(.m, rows) {
   .m[rows, ]
 }
+
+
+#' Set colnames of object
+#'
+#' @param .m A 2d matrix
+#' @param column_names Numeric or character vector or empty (missing)
+#' @return Copy of matrix with colnames
+#' @examples
+#' set_colnames(matrix(1:6, nrow = 3), c("a", "b"))
+#' set_colnames(matrix(1:6, nrow = 2), c("a", "b", "c"))
+#' set_colnames(matrix(1:6, nrow = 3, byrow = TRUE, dimnames = list(c("a", "b", "c"), c("x", "y"))), NULL)
+#' @export
+set_colnames <- function(.m, column_names) {
+  colnames(.m) <- column_names
+  .m
+}
+
+
+#' Set rownames of object
+#'
+#' @param .m A 2d matrix
+#' @param row_names Numeric or character vector or NULL
+#' @return Copy of matrix with rownames
+#' @examples
+#' set_rownames(matrix(1:6, nrow = 2), c("a", "b"))
+#' set_rownames(matrix(1:6, nrow = 3), c("a", "b", "c"))
+#' set_rownames(matrix(1:6, nrow = 3, byrow = TRUE, dimnames = list(c("a", "b", "c"))), NULL)
+#' @export
+set_rownames <- function(.m, row_names) {
+  rownames(.m) <- row_names
+  .m
+}

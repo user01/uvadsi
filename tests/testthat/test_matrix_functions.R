@@ -114,6 +114,16 @@ test_that("Set Column Names 3", {
       )
 })
 
+test_that("Override Column Names", {
+  matrix(1:6, nrow = 2, dimnames = list(NULL, c("x", "y", "z"))) %>%
+    set_colnames(c("a", "b", "c")) %>%
+    expect_equal(
+      matrix(1:6,
+        nrow = 2,
+        dimnames = list(NULL, c("a", "b", "c")))
+      )
+})
+
 test_that("Set Column Names Clear", {
   matrix(1:6,
     nrow = 2,
@@ -145,6 +155,16 @@ test_that("Set Row Names 2", {
 
 test_that("Set Row Names 3", {
   matrix(1:6, nrow = 3) %>%
+    set_rownames(c("a", "b", "c")) %>%
+    expect_equal(
+      matrix(1:6,
+        nrow = 3,
+        dimnames = list(c("a", "b", "c"), NULL))
+      )
+})
+
+test_that("Override Row Names", {
+  matrix(1:6, nrow = 3, dimnames = list(c("x", "y", "z"), NULL)) %>%
     set_rownames(c("a", "b", "c")) %>%
     expect_equal(
       matrix(1:6,

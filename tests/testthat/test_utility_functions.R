@@ -17,7 +17,8 @@ test_that("get_ error", {
     expect_error({
       list(a = 1:5, b = 9:10) %>%
         get_("c")
-    }, "object 'c' not found")
+    }
+    , "object 'c' not found")
 })
 
 # #############################################################################
@@ -26,11 +27,11 @@ test_that("get_ error", {
 test_that("if_else simple", {
 
   1:10 %>%
-    if_else(T, sum, mean) %>%
+    if_else(TRUE, sum, mean) %>%
     expect_equal(sum(1:10))
 
   1:10 %>%
-    if_else(F, sum, mean) %>%
+    if_else(FALSE, sum, mean) %>%
     expect_equal(mean(1:10))
 })
 

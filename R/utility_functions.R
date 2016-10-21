@@ -35,3 +35,29 @@ if_else <- function(.data, .truth, .lhs, .rhs) {
     .rhs(.data)
   }
 }
+
+#' Returns if the value is invalid
+#'
+#' Returns True if NA, NULL, NaN, or of length 0
+#'
+#' @param .data Any
+#' @return Logical
+#' @examples
+#' is_invalid(3)
+#' is_invalid(NULL)
+#' is_invalid(NaN)
+#' is_invalid(list())
+#' @export
+is_invalid <- function(.data) {
+  # This function is adapted from Stack Overflow at:
+  # http://stackoverflow.com/a/19655909/2601448
+  if(is.function(.data)) {
+    return(FALSE)
+  }
+
+  return (is.null(.data) ||
+          length(.data) == 0 ||
+          all(is.na(.data)) ||
+          all(.data=="")
+         )
+}

@@ -53,3 +53,24 @@ test_that("if_else compound", {
     if_else(., length(.) %% 2 == 0, first, last) %>%
     expect_equal(11)
 })
+
+# #############################################################################
+# is_invalid Tests
+# #############################################################################
+test_that("is_invalid TRUE", {
+
+  expect_true(is_invalid(NULL))
+  expect_true(is_invalid(NaN))
+  expect_true(is_invalid(NA))
+  expect_true(is_invalid(c()))
+  expect_true(is_invalid(list()))
+})
+
+test_that("is_invalid FALSE", {
+
+  expect_false(is_invalid(1))
+  expect_false(is_invalid("NaN"))
+  expect_false(is_invalid(1:40))
+  expect_false(is_invalid(1.4:40))
+  expect_false(is_invalid(list(1,2,3)))
+})

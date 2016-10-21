@@ -73,4 +73,5 @@ test_that("is_invalid FALSE", {
   expect_false(is_invalid(1:40))
   expect_false(is_invalid(1.4:40))
   expect_false(is_invalid(list(1,2,3)))
+  expect_false(is_invalid(is_invalid))
 })

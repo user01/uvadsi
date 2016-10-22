@@ -51,13 +51,13 @@ if_else <- function(.data, .truth, .lhs, .rhs) {
 is_invalid <- function(.data) {
   # This function is adapted from Stack Overflow at:
   # http://stackoverflow.com/a/19655909/2601448
-  if(is.function(.data)) {
+  if (is.function(.data)) {
     return(FALSE)
   }
 
   return (is.null(.data) ||
           length(.data) == 0 ||
           all(is.na(.data)) ||
-          all(.data=="")
+          all(.data == "")
          )
 }

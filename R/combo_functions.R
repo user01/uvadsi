@@ -16,10 +16,12 @@ combo_internal <- function(.set, .map_fn) {
   }
 
   .set %>%
-    (function(e) { list(e, 1:length(e)) }) %>%
+    (function(e) {
+      list(e, 1:length(e))
+    }) %>%
     transpose -> elements
 
-  seq(1, 2**length(.set)) %>%
+  seq(1, 2 ** length(.set)) %>%
     map(function(mask){
       elements %>%
         discard(function(pair){
@@ -27,13 +29,19 @@ combo_internal <- function(.set, .map_fn) {
           pair %>%
             nth(2) %>%
             `-`(1) %>%
-            (function(e) { bitwShiftL(1, e) }) %>%
+            (function(e) {
+              bitwShiftL(1, e)
+            }) %>%
             bitwAnd(mask) %>%
             `>`(0)
         }) %>%
-        .map_fn(function(e) { nth(e, 1) } )
+        .map_fn(function(e) {
+          nth(e, 1)
+        } )
     }) %>%
-    discard(function(e) {length(e) < 1} ) # ignore empties (probably not useful)
+    discard(function(e) {
+      length(e) < 1 # ignore empties (probably not useful)
+    } )
 }
 
 

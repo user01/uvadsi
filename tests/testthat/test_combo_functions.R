@@ -18,7 +18,7 @@ test_that("combo int", {
     walk(function(v){
       expect_equal(
           v %>% typeof,
-          'integer'
+          "integer"
         )
       })
 
@@ -38,7 +38,7 @@ test_that("combo dbl", {
     walk(function(v){
       expect_equal(
           v %>% typeof,
-          'double'
+          "double"
         )
       })
 
@@ -59,7 +59,7 @@ test_that("combo chr", {
     walk(function(v){
       expect_equal(
           v %>% typeof,
-          'character'
+          "character"
         )
       })
 
@@ -80,7 +80,7 @@ test_that("combo list", {
     walk(function(v){
       expect_equal(
           v %>% typeof,
-          'list'
+          "list"
         )
       })
 
@@ -100,7 +100,7 @@ test_that("combo standard", {
     walk(function(v){
       expect_equal(
           v %>% typeof,
-          'list'
+          "list"
         )
       })
 

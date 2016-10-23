@@ -7,7 +7,8 @@
 #' @param .set Vector of values to combine
 #' @param .map_fn Function to map over .set elements
 #' @return List of vectors (chr, lgl, int, dbl) that match set type
-#' @importFrom dplyr %>% nth
+#' @importFrom dplyr %>%
+#' @importFrom dplyr nth
 #' @importFrom purrr transpose map discard
 combo_internal <- function(.set, .map_fn) {
   # For invalid choices (empty, or NaN, etc), return an empty list
@@ -27,7 +28,7 @@ combo_internal <- function(.set, .map_fn) {
         discard(function(pair){
           # if the pair index is masked (0), drop it. keep if slot is 1
           pair %>%
-            nth(2) %>%
+            dplyr::nth(2) %>%
             `-`(1) %>%
             (function(e) {
               bitwShiftL(1, e)
@@ -36,7 +37,7 @@ combo_internal <- function(.set, .map_fn) {
             `>`(0)
         }) %>%
         .map_fn(function(e) {
-          nth(e, 1)
+          dplyr::nth(e, 1)
         } )
     }) %>%
     discard(function(e) {
@@ -58,7 +59,7 @@ combo_internal <- function(.set, .map_fn) {
 #' @importFrom purrr map
 #' @export
 combo_list <- function(.set) {
-  combo_internal(.set, map)
+  combo_internal(.set, purrr::map)
 }
 
 
@@ -74,7 +75,7 @@ combo_list <- function(.set) {
 #' @importFrom purrr map_int
 #' @export
 combo_int <- function(.set) {
-  combo_internal(.set, map_int)
+  combo_internal(.set, purrr::map_int)
 }
 
 
@@ -90,7 +91,7 @@ combo_int <- function(.set) {
 #' @importFrom purrr map_dbl
 #' @export
 combo_dbl <- function(.set) {
-  combo_internal(.set, map_dbl)
+  combo_internal(.set, purrr::map_dbl)
 }
 
 
@@ -106,7 +107,7 @@ combo_dbl <- function(.set) {
 #' @importFrom purrr map_chr
 #' @export
 combo_chr <- function(.set) {
-  combo_internal(.set, map_chr)
+  combo_internal(.set, purrr::map_chr)
 }
 
 

@@ -13,11 +13,11 @@
 #' @export
 #' @importFrom dplyr %>%
 vector_to_r_code <- function(v) {
-  if (class(v) == 'character') {
+  if (class(v) == "character") {
     v %>%
       paste(collapse = "\",\"") %>%
-      paste("c(\"", . ,"\")", sep="")
-  } else if (class(v) == 'factor') {
+      paste("c(\"", ., "\")", sep = "")
+  } else if (class(v) == "factor") {
     v %>%
       paste(collapse = "\",\"") %>%
       paste("as.factor(c(\"", ., "\"))", sep = "")
@@ -46,7 +46,7 @@ dataframe_to_r_code <- function(df) {
       df %>%
         get_(name) %>%
         vector_to_r_code %>%
-        paste(name,"=", ., sep = "")
+        paste(name, "=", ., sep = "")
       }) %>%
     paste(collapse = ",\n") %>%
     paste("data.frame(", ., ",\nstringsAsFactors=FALSE)", sep = "")

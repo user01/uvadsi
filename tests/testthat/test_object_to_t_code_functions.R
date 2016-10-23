@@ -7,9 +7,11 @@ suppressPackageStartupMessages(library(dplyr))
 # vector_to_r_code Tests
 # #############################################################################
 
-test__to_r_code <- function(vv, fn) {
+globalVariables(c("test_vector_to_r_code", "test__to_r_code"))
+
+test_vector_to_r_code <- function(vv) {
     vv %>%
-      fn %>%
+      vector_to_r_code %>%
       (function(chr) {
         parse(text = chr)
       }) %>%
@@ -17,20 +19,16 @@ test__to_r_code <- function(vv, fn) {
       expect_equal(vv)
 }
 
-test_vector_to_r_code <- function(vv) {
-  vv %>% test__to_r_code(vector_to_r_code)
-}
-
-test_that("vector_to_r_code int", {
+test_that("vector_to_r_code", {
   1:3 %>% test_vector_to_r_code
   130:9 %>% test_vector_to_r_code
-  seq(1,200,5) %>% test_vector_to_r_code
+  seq(1, 200, 5) %>% test_vector_to_r_code
 })
 
 test_that("vector_to_r_code double", {
   1.5:3 %>% test_vector_to_r_code
   130.23:9 %>% test_vector_to_r_code
-  seq(1,200,3.3) %>% test_vector_to_r_code
+  seq(1, 200, 3.3) %>% test_vector_to_r_code
 })
 
 test_that("vector_to_r_code character", {
@@ -50,8 +48,14 @@ test_that("vector_to_r_code logical", {
 # dataframe_to_r_code Tests
 # #############################################################################
 
-test_dataframe_to_r_code <- function(vv) {
-  vv %>% test__to_r_code(dataframe_to_r_code)
+test_dataframe_to_r_code <- function(df) {
+    df %>%
+      dataframe_to_r_code %>%
+      (function(chr) {
+        parse(text = chr)
+      }) %>%
+      eval %>%
+      expect_equal(df)
 }
 
 test_that("dataframe_to_r_code simple", {

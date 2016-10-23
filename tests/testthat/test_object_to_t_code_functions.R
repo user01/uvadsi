@@ -7,14 +7,18 @@ suppressPackageStartupMessages(library(dplyr))
 # vector_to_r_code Tests
 # #############################################################################
 
-test_vector_to_r_code <- function(vv) {
+test__to_r_code <- function(vv, fn) {
     vv %>%
-      vector_to_r_code %>%
+      fn %>%
       (function(chr) {
         parse(text = chr)
       }) %>%
       eval %>%
       expect_equal(vv)
+}
+
+test_vector_to_r_code <- function(vv) {
+  vv %>% test__to_r_code(vector_to_r_code)
 }
 
 test_that("vector_to_r_code int", {
@@ -39,4 +43,25 @@ test_that("vector_to_r_code logical", {
   TRUE %>% test_vector_to_r_code
   c(TRUE, TRUE, FALSE) %>% test_vector_to_r_code
   rep(c(TRUE, TRUE, FALSE, TRUE), 50) %>% test_vector_to_r_code
+})
+
+
+# #############################################################################
+# dataframe_to_r_code Tests
+# #############################################################################
+
+test_dataframe_to_r_code <- function(vv) {
+  vv %>% test__to_r_code(dataframe_to_r_code)
+}
+
+test_that("dataframe_to_r_code simple", {
+  data.frame(a = 1:4) %>% test_dataframe_to_r_code
+  data.frame(a = 2000:400) %>% test_dataframe_to_r_code
+  data.frame(a = 1:26, letters = letters) %>% test_dataframe_to_r_code
+})
+
+test_that("dataframe_to_r_code complex", {
+  data.frame(a = 1:26, letters = letters, lgl = rep(c(TRUE, FALSE), 13)) %>%
+    mutate(cletters = as.character(letters)) %>%
+    test_dataframe_to_r_code
 })

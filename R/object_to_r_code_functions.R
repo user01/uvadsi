@@ -27,3 +27,27 @@ vector_to_r_code <- function(v) {
       paste("c(", ., ")", sep = "")
   }
 }
+
+
+#' The text of R Code version of Data Frame
+#'
+#' @param df A Data Frame
+#' @return Character of R Code to make dataframe
+#' @examples
+#' dataframe_to_r_code(data.frame(a=1:5))
+#' dataframe_to_r_code(data.frame(letters=letters))
+#' @export
+#' @importFrom dplyr %>%
+#' @importFrom purrr map
+dataframe_to_r_code <- function(df) {
+  df %>%
+    colnames %>%
+    map(function(name){
+      df %>%
+        get_(name) %>%
+        vector_to_r_code %>%
+        paste(name,"=", ., sep = "")
+      }) %>%
+    paste(collapse = ",\n") %>%
+    paste("data.frame(", ., ",\nstringsAsFactors=FALSE)", sep = "")
+}

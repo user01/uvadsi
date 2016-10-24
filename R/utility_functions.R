@@ -25,10 +25,10 @@ get_ <- function(.o, name) {
 #' @param .rhs A function
 #' @return Any
 #' @examples
-#' if_else(1:5, TRUE, sum, mean)
-#' if_else(1:5, FALSE, sum, mean)
+#' if_else_(1:5, TRUE, sum, mean)
+#' if_else_(1:5, FALSE, sum, mean)
 #' @export
-if_else <- function(.data, .truth, .lhs, .rhs) {
+if_else_ <- function(.data, .truth, .lhs, .rhs) {
   if (.truth) {
     .lhs(.data)
   } else {

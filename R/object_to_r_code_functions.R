@@ -8,8 +8,8 @@
 #' @return Character of R Code to make vector
 #' @examples
 #' vector_to_r_code(1:5)
-#' vector_to_r_code(letters)
-#' vector_to_r_code(c(T,F,F,T))
+#' vector_to_r_code(letters[1:5])
+#' vector_to_r_code(c(TRUE, FALSE, FALSE, TRUE))
 #' @export
 #' @importFrom dplyr %>%
 vector_to_r_code <- function(v) {
@@ -46,8 +46,12 @@ dataframe_to_r_code <- function(df) {
       df %>%
         get_(name) %>%
         vector_to_r_code %>%
-        paste(name, "=", ., sep = "")
+        (function(code) {
+          paste(name, "=", code, sep = "")
+        })
       }) %>%
     paste(collapse = ",\n") %>%
-    paste("data.frame(", ., ",\nstringsAsFactors=FALSE)", sep = "")
+    (function(results) {
+      paste("data.frame(", results, ",\nstringsAsFactors=FALSE)", sep = "")
+    })
 }

@@ -22,35 +22,35 @@ test_that("get_ error", {
 })
 
 # #############################################################################
-# if_else Tests
+# if_else_ Tests
 # #############################################################################
-test_that("if_else simple", {
+test_that("if_else_ simple", {
 
   1:10 %>%
-    if_else(TRUE, sum, mean) %>%
+    if_else_(TRUE, sum, mean) %>%
     expect_equal(sum(1:10))
 
   1:10 %>%
-    if_else(FALSE, sum, mean) %>%
+    if_else_(FALSE, sum, mean) %>%
     expect_equal(mean(1:10))
 })
 
-test_that("if_else compound", {
+test_that("if_else_ compound", {
 
   1:10 %>%
-    if_else(., length(.) > 4, sum, mean) %>%
+    if_else_(., length(.) > 4, sum, mean) %>%
     expect_equal(sum(1:10))
 
   1:10 %>%
-    if_else(., length(.) < 4, sum, mean) %>%
+    if_else_(., length(.) < 4, sum, mean) %>%
     expect_equal(mean(1:10))
 
   1:10 %>%
-    if_else(., length(.) %% 2 == 0, first, last) %>%
+    if_else_(., length(.) %% 2 == 0, first, last) %>%
     expect_equal(1)
 
   1:11 %>%
-    if_else(., length(.) %% 2 == 0, first, last) %>%
+    if_else_(., length(.) %% 2 == 0, first, last) %>%
     expect_equal(11)
 })
 

@@ -119,7 +119,7 @@ combo_chr <- function(.set) {
 #' @param ... Vectors data
 #' @return List of list of values
 #' @examples
-#' combo(list(list(1:5),list(6:10),list(11:15)))
+#' combo(list(list(1:5), list(6:10), list(11:15)))
 #' @export
 combo <- function(...) {
   combo_list(...)

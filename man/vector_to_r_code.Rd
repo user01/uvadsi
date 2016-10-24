@@ -18,7 +18,7 @@ overfit.
 }
 \examples{
 vector_to_r_code(1:5)
-vector_to_r_code(letters)
-vector_to_r_code(c(T,F,F,T))
+vector_to_r_code(letters[1:5])
+vector_to_r_code(c(TRUE, FALSE, FALSE, TRUE))
 }
 

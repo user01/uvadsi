@@ -17,6 +17,6 @@ Returns a map of all non-empty combinations of set. Returns an empty list if
 given an empty or invalid value.
 }
 \examples{
-combo(list(list(1:5),list(6:10),list(11:15)))
+combo(list(list(1:5), list(6:10), list(11:15)))
 }
 

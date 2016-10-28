@@ -1,13 +1,15 @@
 Package: uvadsi
 Title: UVA Data Science Institute '17
 Version: 0.0.1
-Authors@R: person("Erik", "Langenborg", email = "el4gf@virginia.edu",
-    role = c("aut", "cre"))
+Authors@R: c( person("Erik", "Langenborg", email = "el4gf@virginia.edu",
+    role = c("aut", "cre")), person("Matt", "DaVolio",
+    email = "md3es@virginia.edu", role = "aut"))
 Description: This package provides tools for the University of Virginia's Data
     Science Institute.
 Depends:
     R (>= 3.2.0)
 Imports:
+    car,
     dplyr,
     purrr
 License: MIT + file LICENSE

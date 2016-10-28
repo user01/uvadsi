@@ -1,8 +1,6 @@
 
 # Libraries
 suppressPackageStartupMessages(library(car))
-suppressPackageStartupMessages(library())
-
 
 # Statics
 test_table_1 <- data.frame(

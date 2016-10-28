@@ -17,8 +17,8 @@
 #' @importFrom stats lm
 vif_lm <- function(frame, pred, bound){
 
-  if(missing(bound)) {
-    bound = 5
+  if (missing(bound)) {
+    bound <- 5
   } else {
     bound
   }
@@ -29,27 +29,32 @@ vif_lm <- function(frame, pred, bound){
   varslist <- names(frame)
   varslist <- varslist[varslist != response]
 
-  model <- lm(paste(response," ~ ", paste(varslist, collapse= "+")), data = frame)
+  model <- lm(paste(response, " ~ ", paste(varslist, collapse = " + ")),
+              data = frame)
 
   vifs <- car::vif(model) # store VIFs of original function
 
-  maxVIF <- max(vifs) # find predictor that has maximum of VIF
+  maxvif <- max(vifs) # find predictor that has maximum of VIF
 
-  while (maxVIF > bound){ # Will continue to run loop until all vif values are less than set bound
-    del = 0
-    maxVar <- vifs == maxVIF # create boolean vector of predictors with max if being T
-    for (i in seq(varslist)){ # cycle through variable list
-      if(maxVar[i] == T){ # find varible with max vif
-        del = i} # index max vif variable
+  # continue run loop until all vif values < than bound
+  while (maxvif > bound){
+    del <- 0
+    maxvar <- vifs == maxvif # boolean vector of predictors with max if being T
+
+    # cycle through variable list
+    for (i in seq(varslist)){
+      # find varible with max vif
+      if (maxvar[i] == T){
+        del <- i # index max vif variable
+        }
     }
     varslist <- varslist[-del] # remove highest vif variable
-    model <- lm(paste(response," ~ ", paste(varslist, collapse= "+")), data = frame)
+    model <- lm(paste(response, " ~ ", paste(varslist, collapse = "+")),
+                data = frame)
     vifs <- car::vif(model) # check new vifs
-    maxVIF <- max(vifs) # find maximum vif, if max > bound will continue
+    maxvif <- max(vifs) # find maximum vif, if max > bound will continue
   }
 
   return(model)
 
 }
-
-d <- data.frame(y=1:5,x1=6:10,x2=11:15,x3=16:20)

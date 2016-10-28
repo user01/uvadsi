@@ -23,7 +23,7 @@ variance inflation factor (VIF)
 }
 \examples{
 d <- data.frame(y=1:5,x1=sample(1:10,5),x2=sample(1:10,5),x3=sample(1:10,5))
-vif_lm(d,'y',5)
+vif_lm(d,'y',3)
 
 vif_lm(d,'y')
 }

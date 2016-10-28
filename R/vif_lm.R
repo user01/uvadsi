@@ -1,8 +1,8 @@
 
 #' Produce a linear model in which no variables in the final model
-#' in which no multicollinearity is present as determined by the 
-#' variance inflation factor (VIF) 
-#' 
+#' in which no multicollinearity is present as determined by the
+#' variance inflation factor (VIF)
+#'
 #' @param frame An object of class 'data.frame'
 #' @param pred An string object of the response variable
 #' @param bound An optional numeric object (default = 5)
@@ -10,7 +10,7 @@
 #' @examples
 #' d <- data.frame(y=1:5,x1=6:10,x2=11:15,x3=16:20)
 #' vif_lm(d,'y',5)
-#' 
+#'
 #' vif_lm(d,'y')
 #' @export
 #' @importFrom car vif

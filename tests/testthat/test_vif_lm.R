@@ -1,7 +1,4 @@
 
-# Libraries
-suppressPackageStartupMessages(library(car))
-
 # Statics
 test_table_1 <- data.frame(
   y = c(sample(1:100, 100)),

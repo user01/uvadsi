@@ -1,4 +1,6 @@
 
+#' Check for multicollinearity in linear model
+#'
 #' Produce a linear model in which no variables in the final model
 #' in which no multicollinearity is present as determined by the
 #' variance inflation factor (VIF)
@@ -8,7 +10,7 @@
 #' @param bound An optional numeric object (default = 5)
 #' @return A linear model containing no multicollinearity
 #' @examples
-#' d <- data.frame(y=1:5,x1=6:10,x2=11:15,x3=16:20)
+#' d <- data.frame(y=1:5,x1=sample(1:10,5),x2=sample(1:10,5),x3=sample(1:10,5))
 #' vif_lm(d,'y',5)
 #'
 #' vif_lm(d,'y')
@@ -32,7 +34,7 @@ vif_lm <- function(frame, pred, bound){
   model <- lm(paste(response, " ~ ", paste(varslist, collapse = " + ")),
               data = frame)
 
-  vifs <- car::vif(model) # store VIFs of original function
+  vifs <- vif(model) # store VIFs of original function
 
   maxvif <- max(vifs) # find predictor that has maximum of VIF
 
@@ -51,7 +53,7 @@ vif_lm <- function(frame, pred, bound){
     varslist <- varslist[-del] # remove highest vif variable
     model <- lm(paste(response, " ~ ", paste(varslist, collapse = "+")),
                 data = frame)
-    vifs <- car::vif(model) # check new vifs
+    vifs <- vif(model) # check new vifs
     maxvif <- max(vifs) # find maximum vif, if max > bound will continue
   }
 

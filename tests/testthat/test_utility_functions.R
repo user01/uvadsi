@@ -75,3 +75,20 @@ test_that("is_invalid FALSE", {
   expect_false(is_invalid(list(1, 2, 3)))
   expect_false(is_invalid(is_invalid))
 })
+
+# #############################################################################
+# all.equal_ Tests
+# #############################################################################
+test_that("all.equal_ TRUE", {
+  expect_true(all.equal_(TRUE, TRUE))
+  expect_true(all.equal_(-1:-900, -1:-900))
+  expect_true(all.equal_(1:5, 1:5))
+  expect_true(all.equal_(1.1:5.1, 1:5, tolerance = 0.2))
+})
+
+test_that("all.equal_ FALSE", {
+  expect_false(all.equal_(TRUE, FALSE))
+  expect_false(all.equal_(-1:-900, -1:-9))
+  expect_false(all.equal_(1:5, 1.1:5))
+  expect_false(all.equal_(1.1:5.1, 1:5, tolerance = 0.004))
+})

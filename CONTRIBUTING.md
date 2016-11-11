@@ -2,9 +2,11 @@
 
 Thanks for looking to contribute!
 
+To get started, check the [walkthrough](#walkthrough).
+
 ## Process
 
-Check out a [walkthrough below](#walkthrough). For all the wonderful details, check out [R packages by Hadley Wickham](http://r-pkgs.had.co.nz/).
+For all the wonderful details, check out [R packages by Hadley Wickham](http://r-pkgs.had.co.nz/).
 
 The rough process to contribute to this package (and most open source github repositories) is to:
 
@@ -51,7 +53,7 @@ if (!require("lintr")) devtools::install_github("jimhester/lintr")
 
 # Walkthrough
 
-Step by step, how to contribute a function.
+Step by step, how to contribute a function. Find a mistake? Contact me.
 
 ### Step 1 - Fork the Project
 
@@ -82,6 +84,10 @@ Create a [branch](https://www.atlassian.com/git/tutorials/using-branches) for yo
 git checkout -b cool-new-feature
 ```
 
+When committing, only include the code that you change and the NAMESPACE
+file (if altered). Don't change extra files, even if devtools alters things like
+the `uvadsi.Rproj`.
+
 ### Step 4 - Write Code
 
 Write your code and commit often with helpful messages. [Skip to Checking](#step-6---check-code).
@@ -110,7 +116,7 @@ even_or_odd <- function(v){
 }
 ```
 
-This example is (quite) contrived, but will suffice for examples. In particular, the function we want to offer is `even_or_odd`. `even_count_of_elements` is just an internal helper.
+This example is (quite) contrived, but will suffice for examples. In particular, the function we want to offer is `even_or_odd`. `even_count_of_elements` is just an internal, probably-not-worthy-of-it's-own-function helper.
 
 ### Step 5 - Document Code
 
@@ -276,7 +282,7 @@ if (sum(v %% 2== 0) > 1) {
 should be
 
 ```R
-if (sum(v %% 2 == 0) > 0) {
+if (sum(v %% 2== 0) > 0) {
 ```
 
 One more `devtools::test()` gives:
@@ -322,7 +328,7 @@ lintr::lint_package(linters=lintr::default_linters[names(lintr::default_linters)
 
 (Why the ugly subsetting? There is a
 [bug in lintr](https://github.com/jimhester/lintr/issues/27). This just removes
-that tester from throwing unwarranted complaints.)
+that linter from throwing unwarranted complaints.)
 
 The results are:
 
@@ -364,3 +370,53 @@ R CMD check results
 The output is long, so I won't reproduce it here. If there are any errors,
 warnings, or notes, you must address them before submitting. If nothing has been
 moved with stray files or new dependencies, this should be a formality.
+
+### Step 8 - Push Code
+
+Your code is ready! First push your branch to your repository on Github.
+
+```
+git push
+```
+
+Git will respond with something like:
+
+```
+fatal: The current branch cool-new-feature has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin cool-new-feature
+```
+
+This just means there is no remote for the branch. Follow the instructions:
+
+```
+git push --set-upstream origin cool-new-feature
+```
+
+### Step 9 - Pull Request
+
+Now your code is in Github, but we need to pull it into the official repository.
+
+To do this, open a pull request. If you visit your fork, Github will prompt you
+to make the request with a big green button. Or you can go to the branches tab
+for the repository and click on "New Pull Request".
+
+If not already the default, you want the base fork (destination) to be
+user01/uvadsi and the head (source) to be your branch.
+
+![Pull Request](assets/pull_request.png "Pull Request")
+
+Make sure to describe what you've done and why it's so great in the provided
+field.
+
+### Step ∞ - Bask in the Glory
+
+Once the request is made, the maintainers will be altered and automated tests
+will run. Hopefully there should be no errors, since the checks are the same
+as the ones you ran on you code locally.
+
+![Pull Request Green](assets/request.png "Green Pull Request")
+
+When everything's green and code is approved, your work will be merged and
+anyone who gets the uvadis package will get to enjoy the results.

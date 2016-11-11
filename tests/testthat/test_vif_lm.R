@@ -1,5 +1,6 @@
 
 # Statics
+set.seed(4)
 test_table_1 <- data.frame(
   y = c(sample(1:100, 100)),
   x1 = c(1:95, sample(95:100, 5)),

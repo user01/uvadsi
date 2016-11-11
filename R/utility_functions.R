@@ -61,3 +61,28 @@ is_invalid <- function(.data) {
           all(.data == "")
          )
 }
+
+
+#' Returns all.equal strictly with a logical
+#'
+#' Returns True if target and current match, False otherwise. Including
+#' parameters for all.equal {base}
+#'
+#' @param target Any
+#' @param current Any
+#' @return Logical
+#' @seealso \code{\link{all.equal}} is the same function, but the base function
+#'   can return more than logical.
+#' @examples
+#' all.equal_(3, 3)
+#' all.equal_(1:5, 1:5)
+#' all.equal_(1.1:5.1, 1:5)
+#' all.equal_(1.1:5.1, 1:5, tolerance = 0.2)
+#' @export
+all.equal_ <- function(...) {
+  result <- all.equal(...)
+  if (is.logical(result)) {
+    return(result)
+  }
+  FALSE
+}
